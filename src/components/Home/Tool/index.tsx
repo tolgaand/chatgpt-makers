@@ -22,8 +22,9 @@ export const ToolList = () => {
       spacing={4}
       templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
     >
-      {toolList.map((tool) => (
+      {toolList.map((tool, index) => (
         <ToolItem
+          key={index}
           name={tool.name}
           description={tool.description}
           link={tool.link}
