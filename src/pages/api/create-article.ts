@@ -5,7 +5,7 @@ import { Configuration, OpenAIApi } from "openai";
 
 const keys: (keyof Article)[] = ["topic", "characterLimit", "title", "body"];
 const regex =
-  /Topic:\s*([\s\S]+?)\n\s*Character\s*Limit:\s*([\s\S]+?)\n\s*Title:\s*([\s\S]+?)\n\s*(?:Body|Article):\s*([\s\S]+)/i;
+  /Topic:\s*([\s\S]+?)\n\s*Character\s*Limit:\s*([\s\S]+?)\n\s*Title:\s*([\s\S]+?)\n\s*(?:Body|Article|Content):\s*([\s\S]+)/i;
 
 const generateArticleText = (title: string, characterCount: number) => {
   return `As a writer, I want you to create an article on a given topic, ensuring it is Google SEO compatible. When developing the article, provide a suggested title and focus on the content. The answer will use the language type of the topic. Keep the article under ${characterCount} characters. Our first topic is '${title}'. Please provide the specific topic ('${title}') and character limit ('${characterCount}'), and I will generate a title and body for the article. Explain everything in Turkish.`;
@@ -42,6 +42,7 @@ export default async function handler(
       characterLimit: "",
       title: "",
       body: "",
+      fullText: text,
     };
 
     const matches = text.match(regex);

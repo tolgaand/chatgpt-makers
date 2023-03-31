@@ -93,17 +93,20 @@ export const CreateArticleContainer = () => {
           <Box>
             {content && (
               <>
-                <Text fontSize="30px" fontWeight="bold">
-                  {content.title}
-                </Text>
+                {content.title && (
+                  <Text fontSize="30px" fontWeight="bold">
+                    {content.title}
+                  </Text>
+                )}
+
                 <Text
                   dangerouslySetInnerHTML={{
-                    __html: content.body,
+                    __html: content.body || content.fullText,
                   }}
                 />
                 <Text marginTop="20px">
-                  Topic:&nbsp;{content.topic} | Character Count:&nbsp;
-                  {content.characterLimit}
+                  Topic:&nbsp;{content.topic || title} | Character Count:&nbsp;
+                  {content.characterLimit || "unknown"}
                 </Text>
               </>
             )}

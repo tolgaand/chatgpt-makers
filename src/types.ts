@@ -3,4 +3,5 @@ export interface Article {
   characterLimit: string;
   title: string;
   body: string;
+  fullText: string;
 }
